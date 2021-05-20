@@ -1,0 +1,50 @@
+@layout('layouts.app')
+
+
+@section('content')
+    <section id='titulo'>
+        @if(gpu_metrics)
+            <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }} </h1>
+            <p class='text-center font-titulo text-secondary pb-5'>Landing page que contém informações sobre a GPU</p>
+        @else
+            <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }} </h1>
+        @endif
+    </section>
+    <section class="pt-5">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">CORE</th>
+                <th scope="col">MEMORY</th>
+                <th scope="col">VRM CORE</th>
+                <th scope="col">GPU HOT SPOT</th>
+                <th scope="col">DIA</th>
+                <th scope="col">HORAs</th>
+              </tr>
+            </thead>
+            <tbody>
+                @each(gpu_metric in gpu_metrics.rows)
+              <tr>
+                <td>{{ gpu_metric.id }}</th> 
+                <td>{{ gpu_metric.gpu_core }}</th>
+                <td>{{ gpu_metric.gpu_memory }}</td>
+                <td>{{ gpu_metric.gpu_vrm_core }}</td>
+                <td>{{ gpu_metric.gpu_hot_spot }}</td>
+                <td>{{ gpu_metric.created_at.toLocaleDateString() }}</td>
+                <td>{{ gpu_metric.created_at.toLocaleTimeString() }}</td>
+              </tr>
+              @endeach
+            </tbody>
+          </table>
+    </section>
+    <section>
+        <h2>Média: {{ avg.avg }}</h2>
+    </section>
+    <section>
+        <h2>Máximo: {{ max_value.max }}</h2>
+    </section>
+    <section>
+      <h2>Min: {{ min_value.min }}</h2>
+    </section>
+@endsection

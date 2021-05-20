@@ -33,6 +33,10 @@ Route.group(() => {
         .namespace("PC")
         .as("pc.show");
 
+    Route.get("/pc/:id/gpu_metrics", "GpuController.show")
+        .namespace("GPU")
+        .as("gpu.show");
+
     // Session Logout And Register
     Route.get("/logout", "SessionController.logout")
         .namespace("Auth")
