@@ -28,8 +28,8 @@ class GpuController {
                 const avg = await GPUMetrics.query()
                     .where("pc_id", params.id)
                     .avg("gpu_core as avg")
-                    .first();
-
+                    .first()
+                
                 return !gpu_metrics.rows.length ? view.render("gpu.show") : view.render("gpu.show", {
                           gpu_metrics,
                           max_value,
