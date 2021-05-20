@@ -1,0 +1,27 @@
+@layout('layouts.app')
+
+
+@section('content')
+<div class="container-fluid">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center pb-3">Login</h2>
+                <p class='text-center font-titulo text-secondary pb-5'>Preencha o e-mail e senha.</p>
+                <form method="POST">
+                    {{ csrfField() }}
+                    <div class="form-group" action={{ route('login') }}>
+                        <label for="email">Email address</label>
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                        <button class="btn btn-success" type="submit">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

@@ -1,0 +1,58 @@
+@layout('layouts.app')
+
+
+@section('content')
+    <section id='titulo'>
+        @if(computers)
+            <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }} </h1>
+            <p class='text-center font-titulo text-secondary pb-5'>Selecione o computador e as métricas desejadas.</p>
+        @else
+            <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }} </h1>
+            <p class='text-center font-titulo text-secondary pb-5'>Não há um computador cadastrado.</p>
+        @endif
+    </section>
+    <section>
+        <section class='container-fluid bg-light' id='cursos'>
+            @if(computers)
+                @each(computer in computers.rows)
+                    <div class='row justify-content-center'>
+                        <div class="card card-edge card-width col-12 col-md-3 col-lg-3 p-0 m-5">
+                            <div class="card-body">
+                            <h5 class="card-title">Computador</h5>
+                            <p class="card-text">{{ computer.mainboard }}</p>
+                            <a href="" class="btn btn-primary">GPU</a>
+                            <a href="" class="btn btn-primary">Memória Ram</a>
+                            <a href="" class="btn btn-primary">Delete</a>
+                            </div>
+                        </div>
+
+                    </div>
+                @endeach
+            @endif
+		</section>
+    </section>
+    <section>
+        <h2 class='text-center font-titulo cor-especial pt-5'>Cadastrar novo computador. </h2>
+        <p class='text-center font-titulo text-secondary pb-5'>Preencha as configurações do computador.</p>
+        <form method="POST">
+            {{ csrfField() }}
+            <div class="form-group" action={{ route('login') }}>
+                <label for="email">Placa mãe</label>
+                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="password">GPU</label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="password">Processador</label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="password">Memória</label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+            </div>
+                <button class="btn btn-success" type="submit">Cadastrar</button>
+        </form>
+    </section>
+@endsection
