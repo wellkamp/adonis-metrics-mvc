@@ -15,18 +15,19 @@
         <section class='container-fluid bg-light' id='cursos'>
             @if(computers)
                 @each(computer in computers.rows)
-                    <div class='row justify-content-center'>
-                        <div class="card card-edge card-width col-12 col-md-3 col-lg-3 p-0 m-5">
-                            <div class="card-body">
-                            <h5 class="card-title">Computador</h5>
-                            <p class="card-text">{{ computer.mainboard }}</p>
-                            <a href="" class="btn btn-primary">GPU</a>
-                            <a href="" class="btn btn-primary">Memória Ram</a>
-                            <a href="" class="btn btn-primary">Delete</a>
-                            </div>
-                        </div>
-
+                <div class="card bg-light mb-3 card-width col-12 col-md-3 col-lg-3 p-0 m-5 border-dark" >
+                    <div class="card-header">Computador</div>
+                    <div class="card-body">
+                      <h3 class="card-title">Especificações</h3>
+                      <p class="card-text">Placa mãe: {{ computer.mainboard }}</p>
+                      <p class="card-text">GPU: {{ computer.gpu }}</p>
+                      <p class="card-text">Processador: {{ computer.processador }}</p>
+                      <p class="card-text">Memória RAM: {{ computer.memory }}</p>
+                      <a href="{{ route('gpu.show', { id: auth.user.id }) }}" class="btn-sm btn-primary">GPU</a>
+                        <a href="" class="btn-sm btn-primary">Memória Ram</a>
+                        <a href="" class="btn-sm btn-danger btn-primary">Delete</a>
                     </div>
+                  </div>                  
                 @endeach
             @endif
 		</section>
