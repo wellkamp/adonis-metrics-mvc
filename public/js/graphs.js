@@ -9,23 +9,44 @@ if (!gpuValues.lenght) {
             labels: hours,
             datasets: [
                 {
-                    label: "Últimos registros da temperatura",
+                    label: "Últimas temperaturas da GPU CORE",
                     data: temperatures,
                     fill: false,
-                    backgroundColor: ["rgba(0, 0, 0)"],
-                    borderColor: ["rgb(0, 0, 0)"],
+                    color: "rgba(255,255,255, 0.5)",
+                    backgroundColor: "rgba(255,255,255, 0.5)",
                     borderWidth: 1,
+                    borderColor: "#9400D3",
+                    tension: 0.1,
                 },
             ],
         },
         options: {
+            legend: {
+                labels: {
+                    fontColor: "rgba(255,255,255, 0.5)",
+                },
+            },
             scales: {
                 yAxes: [
                     {
                         ticks: {
+                            fontColor: "rgba(255,255,255, 0.5)",
                             beginAtZero: true,
                             max: 100,
                             min: 0,
+                        },
+                        gridLines: {
+                            color: "rgba(255,255,255, 0.5)",
+                        },
+                    },
+                ],
+                xAxes: [
+                    {
+                        ticks: {
+                            fontColor: "rgba(255,255,255, 0.5)",
+                        },
+                        gridLines: {
+                            color: "rgba(255,255,255, 0.5)",
                         },
                     },
                 ],
@@ -43,23 +64,44 @@ if (!gpuValues.lenght) {
             labels: h,
             datasets: [
                 {
-                    label: "Temps da GPU CORE > 50 nos últimos 10 dias",
+                    label: "Temperaturas maiores que 50 nos últimos 10 dias",
                     data: temps,
                     fill: false,
-                    backgroundColor: ["rgba(0, 0, 0)"],
-                    borderColor: ["rgb(0, 0, 0)"],
+                    color: "rgba(255,255,255, 0.5)",
+                    backgroundColor: "rgba(255,255,255, 0.5)",
                     borderWidth: 1,
+                    borderColor: "#9400D3",
+                    tension: 0.1,
                 },
             ],
         },
         options: {
+            legend: {
+                labels: {
+                    fontColor: "rgba(255,255,255, 0.5)",
+                },
+            },
             scales: {
                 yAxes: [
                     {
                         ticks: {
+                            fontColor: "rgba(255,255,255, 0.5)",
                             beginAtZero: true,
                             max: 100,
                             min: 0,
+                        },
+                        gridLines: {
+                            color: "rgba(255,255,255, 0.5)",
+                        },
+                    },
+                ],
+                xAxes: [
+                    {
+                        ticks: {
+                            fontColor: "rgba(255,255,255, 0.5)",
+                        },
+                        gridLines: {
+                            color: "rgba(255,255,255, 0.5)",
                         },
                     },
                 ],

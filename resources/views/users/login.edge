@@ -2,14 +2,20 @@
 
 
 @section('content')
-<div class="container-fluid">
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="text-center pb-3">Login</h2>
-                <p class='text-center font-titulo text-secondary pb-5'>Preencha o e-mail e senha.</p>
-                <form method="POST">
-                    {{ csrfField() }}
+@if(flashMessage('notification.type') === 'danger' && flashMessage('notification.message'))
+    <div class="alert alert-danger" role="alert">
+        Usuário não encontrado
+    </div>
+@endif
+
+<section>
+    <h2 class='text-center titulo cor-especial pt-5'>Login. </h2>
+    <p class='text-center titulo text-secondary pb-5'>Por favor preencha os dados corretos.</p>
+</section>
+
+<section>
+    <form method="POST" class="container col-lg-6">
+        {{ csrfField() }}
                     <div class="form-group" action={{ route('login') }}>
                         <label for="email">Email address</label>
                         <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -18,10 +24,10 @@
                         <label for="password">Password</label>
                         <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                     </div>
-                        <button class="btn btn-success" type="submit">Entrar</button>
-                </form>
-            </div>
+        <div class="text-center">
+            <button class="btn btn-success mb-5 mt-3" type="submit">Entrar</button>
         </div>
-    </div>
-</div>
+    </form>
+</section>
+
 @endsection
