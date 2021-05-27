@@ -3,9 +3,9 @@
 
 @section('content')
     <section id='titulo'>
-        @if(gpu_metrics)
-            <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }} </h1>
-            <p class='text-center font-titulo text-secondary pb-5'>Landing page que contém informações sobre a GPU</p>
+        @if(gpuMetrics)
+            <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }}</h1>
+            <p class='text-center font-titulo text-secondary pb-5'>Landing page que contém informações sobre a GPU {{ personalComputer.gpu }}</p>
         @else
             <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }} </h1>
         @endif
@@ -24,48 +24,89 @@
               </tr>
             </thead>
             <tbody>
-                @each(gpu_metric in gpu_metrics.rows)
+                @each(gpuMetric in gpuMetrics.rows)
               <tr>
-                <td>{{ gpu_metric.id }}</th> 
-                <td>{{ gpu_metric.gpu_core }}</th>
-                <td>{{ gpu_metric.gpu_memory }}</td>
-                <td>{{ gpu_metric.gpu_vrm_core }}</td>
-                <td>{{ gpu_metric.gpu_hot_spot }}</td>
-                <td>{{ gpu_metric.created_at.toLocaleDateString() }}</td>
-                <td>{{ gpu_metric.created_at.toLocaleTimeString() }}</td>
+                <td>{{ gpuMetric.id }}</th> 
+                <td>{{ gpuMetric.gpu_core }}</th>
+                <td>{{ gpuMetric.gpu_memory }}</td>
+                <td>{{ gpuMetric.gpu_vrm_core }}</td>
+                <td>{{ gpuMetric.gpu_hot_spot }}</td>
+                <td>{{ gpuMetric.created_at.toLocaleDateString() }}</td>
+                <td>{{ gpuMetric.created_at.toLocaleTimeString() }}</td>
               </tr>
               @endeach
             </tbody>
           </table>
     </section>
-    <section id='titulo' class="pt-5">
-      @if(gpu_metrics)
-          <h2 class='text-center font-titulo cor-especial pt-5'>Média, valor máximo e minimo.</h2>
+    <section id='titulo' class="p-5">
+      @if(gpuMetrics)
+          <h2 class='text-center font-titulo cor-especial p-5'>Valores máximo, minimo e médio total.</h2>
       @else
-          <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }} </h1>
+          <h1 class='text-center font-titulo cor-especial p-5'>Olá, {{ auth.user.username }} </h1>
       @endif
-  </section>
-    <section class="pt-5">
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: {{max_value.max}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ max_value.max }}</div>
-      </div>
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: {{min_value.min}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ min_value.min }}</div>
-      </div>
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: {{avg.avg}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ avg.avg }}</div>
-      </div>
     </section>
+    
     <section>
-      
+      <section class="col-lg-12 text-center">
+        <div class="circlechart col-lg-4 p-5" 
+              data-percentage="{{maxValue.max}}">MAX
+          </div>
+          <div class="circlechart col-lg-4 p-5" 
+              data-percentage="{{minValue.min}}">MIN
+          </div>
+          <div class="circlechart col-lg-4 p-5" 
+              data-percentage="{{avg.avg.toFixed(2)}}">AVG
+          </div>
+      </section>
     </section>
+    <section id='titulo' class="p-5">
+      @if(gpuMetrics)
+          <h2 class='text-center font-titulo cor-especial p-5'>Valores máximo, minimo e médio Diário.</h2>
+      @else
+          <h1 class='text-center font-titulo cor-especial p-5'>Olá, {{ auth.user.username }} </h1>
+      @endif
+    </section>
+    
     <section>
-        <h2>Média: {{ (avg.avg.toFixed(2)) }}</h2>
+      <section class="col-lg-12 text-center">
+        <div class="circlechart col-lg-4 p-5" 
+              data-percentage="{{maxValuePerDay.maxPerDay}}">MAX
+          </div>
+          <div class="circlechart col-lg-4 p-5" 
+              data-percentage="{{minValuePerDay.minPerDay}}">MIN
+          </div>
+          <div class="circlechart col-lg-4 p-5" 
+              data-percentage="{{avgValuePerDay.avgPerDay.toFixed(2)}}">AVG
+          </div>
+      </section>
     </section>
-    <section>
-        <h2>Máximo: {{ max_value.max }}</h2>
+    <section id='titulo' class="p-5">
+        @if(gpuMetrics)
+            <h2 class='text-center font-titulo cor-especial p-5'>Gráficos.</h2>
+        @else
+            <h1 class='text-center font-titulo cor-especial p-5'>Olá, {{ auth.user.username }} </h1>
+        @endif
+      </section>
+    <section class="col-12 col-sm-12 col-md-6 col-lg-6 p-5 mb-5">
+      <canvas id="lastTen" width="150" height="150"></canvas>
     </section>
-    <section>
-      <h2>Min: {{ min_value.min }}</h2>
+    <section class="col-12 col-sm-12 col-md-6 col-lg-6 p-5 mb-5">
+        <canvas id="fiftyGraph" width="200" height="200"></canvas>
     </section>
+    <section class="col-12 col-sm-12 col-md-6 col-lg-6 p-5 mb-5">
+        <canvas id="myChart3" width="150" height="150"></canvas>
+    </section>
+    <section class="col-12 col-sm-12 col-md-6 col-lg-6 p-5 mb-5">
+        <canvas id="myChart4" width="150" height="150"></canvas>
+    </section>
+    <script>
+        let gpuValues = {{{gpu_arr}}}
+        let hourAt = {{{hour_at_arr}}}
+        let gpuMoreThenFifty = {{{ gpuCoreFifty }}}
+        let hourAtFifty = {{{ hourAtFifty }}}
+    </script>
+    {{ script('js/graphs.js')}}
+    <script>
+      $('.circlechart').circlechart();
+    </script>
 @endsection

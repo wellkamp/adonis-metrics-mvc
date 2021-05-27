@@ -1,0 +1,1 @@
+$('.circlechart').circlechart();
