@@ -9,12 +9,11 @@ if (!gpuValues.lenght) {
             labels: hours,
             datasets: [
                 {
-                    label: "Últimos registros da temperatura",
+                    label: "Últimas temperaturas da GPU CORE",
                     data: temperatures,
                     fill: false,
-                    backgroundColor: ["rgba(0, 0, 0)"],
-                    borderColor: ["rgb(0, 0, 0)"],
-                    borderWidth: 1,
+                    borderColor: "#9400D3",
+                    tension: 0.1,
                 },
             ],
         },
@@ -43,12 +42,11 @@ if (!gpuValues.lenght) {
             labels: h,
             datasets: [
                 {
-                    label: "Temps da GPU CORE > 50 nos últimos 10 dias",
-                    data: temps,
+                    label: "Temperatura maior que 50° nos últimos 10 dias",
+                    data: gpuMoreThenFifty,
                     fill: false,
-                    backgroundColor: ["rgba(0, 0, 0)"],
-                    borderColor: ["rgb(0, 0, 0)"],
-                    borderWidth: 1,
+                    borderColor: "#9400D3",
+                    tension: 0.1,
                 },
             ],
         },
