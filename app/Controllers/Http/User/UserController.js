@@ -21,7 +21,7 @@ class UserController {
             return response.redirect("users.register");
         }
 
-        return response.route("users.login");
+        return response.route("/");
     }
 }
 
