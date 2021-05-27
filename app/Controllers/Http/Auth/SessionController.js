@@ -2,6 +2,7 @@
 
 const User = use("App/Models/User");
 const Database = use("Database");
+const Hash = use("Hash");
 
 class LoginController {
     index({ view }) {
@@ -11,14 +12,25 @@ class LoginController {
     async login({ request, auth, session, response }) {
         const { email, password, remember } = request.all();
 
-        const user = await auth.attempt(email, password);
-        console.log(auth.user.id);
-        if (user) {
-            session.flash({ notification: "Logged in successfully" });
-            return response.redirect("/");
-        }
+        const user = await User.query().where("email", email).first();
 
-        return response.redirect("/login");
+        if (user) {
+            const passwordVerified = await Hash.verify(password, user.password);
+            if (passwordVerified) {
+                await auth.attempt(email, password);
+                session.flash({ notification: "Logged in successfully" });
+                return response.redirect("/");
+            }
+        }
+        session.flash({
+            notification: {
+                type: "danger",
+                message:
+                    "Estas credenciais não correspondem aos nossos registros.",
+            },
+        });
+
+        return response.redirect("back");
     }
 
     async logout({ auth, response, session }) {

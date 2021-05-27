@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <section id='titulo'>
+    <section class='titulo'>
         @if(computers)
             <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }} </h1>
             <p class='text-center font-titulo text-secondary pb-5'>Selecione o computador e as métricas desejadas.</p>
@@ -11,49 +11,54 @@
             <p class='text-center font-titulo text-secondary pb-5'>Não há um computador cadastrado.</p>
         @endif
     </section>
-    <section>
-        <section class='container-fluid bg-light' id='cursos'>
-            @if(computers)
-                @each(computer in computers.rows)
-                <div class="card bg-light mb-3 card-width col-12 col-md-3 col-lg-3 p-0 m-5 border-dark" >
-                    <div class="card-header">Computador</div>
-                    <div class="card-body">
-                      <h3 class="card-title">Especificações</h3>
-                      <p class="card-text">Placa mãe: {{ computer.mainboard }}</p>
-                      <p class="card-text">GPU: {{ computer.gpu }}</p>
-                      <p class="card-text">Processador: {{ computer.processador }}</p>
-                      <p class="card-text">Memória RAM: {{ computer.memory }}</p>
-                      <a href="{{ route('gpu.show', { id: auth.user.id }) }}" class="btn-sm btn-primary">GPU</a>
-                        <a href="" class="btn-sm btn-primary">Memória Ram</a>
-                        <a href="" class="btn-sm btn-danger btn-primary">Delete</a>
-                    </div>
-                  </div>                  
-                @endeach
-            @endif
-		</section>
+    
+    <section class='container-fluid bg-light p-5' id='cursos'>
+        @if(computers)
+            @each(computer in computers.rows)
+            <div class="card bg-light mb-3 card-width col-12 col-md-3 col-lg-3 p-0 m-5 border-dark" >
+                <div class="card-header">Computador</div>
+                <div class="card-body">
+                    <h3 class="card-title">Especificações</h3>
+                    <p class="card-text">Placa mãe: {{ computer.mainboard }}</p>
+                    <p class="card-text">GPU: {{ computer.gpu }}</p>
+                    <p class="card-text">Processador: {{ computer.processador }}</p>
+                    <p class="card-text">Memória RAM: {{ computer.memory }}</p>
+                    <a href="{{ route('gpu.show', { id: auth.user.id }) }}" class="btn-sm btn-primary">GPU</a>
+                    <a href="" class="btn-sm btn-primary">Memória Ram</a>
+                    <a href="" class="btn-sm btn-danger btn-primary">Delete</a>
+                </div>
+                </div>                  
+            @endeach
+        @endif
     </section>
+    
     <section>
-        <h2 class='text-center font-titulo cor-especial pt-5'>Cadastrar novo computador. </h2>
-        <p class='text-center font-titulo text-secondary pb-5'>Preencha as configurações do computador.</p>
-        <form method="POST">
+        <h2 class='text-center titulo cor-especial pt-5'>Cadastrar novo computador. </h2>
+        <p class='text-center titulo text-secondary pb-5'>Preencha as configurações do computador.</p>
+    </section>
+
+    <section>
+        <form method="POST" class="container col-lg-6">
             {{ csrfField() }}
             <div class="form-group" action={{ route('login') }}>
                 <label for="email">Placa mãe</label>
-                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="email" name="mainboard" class="form-control" id="mainboard" placeholder="Placa mãe">
             </div>
             <div class="form-group">
                 <label for="password">GPU</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" name="gpu" class="form-control" id="gpu" placeholder="GPU">
             </div>
             <div class="form-group">
                 <label for="password">Processador</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" name="core" class="form-control" id="core" placeholder="Processador">
             </div>
             <div class="form-group">
                 <label for="password">Memória</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" name="memory" class="form-control" id="memory" placeholder="Memória">
             </div>
-                <button class="btn btn-success" type="submit">Cadastrar</button>
+            <div class="text-center">
+                <button class="btn btn-success mb-5 mt-3" type="submit">Cadastrar</button>
+            </div>
         </form>
     </section>
 @endsection
