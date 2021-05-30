@@ -18,7 +18,7 @@ class LoginController {
             const passwordVerified = await Hash.verify(password, user.password);
             if (passwordVerified) {
                 await auth.attempt(email, password);
-                session.flash({ notification: "Logged in successfully" });
+
                 return response.redirect("/");
             }
         }

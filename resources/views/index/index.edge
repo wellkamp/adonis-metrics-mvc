@@ -2,7 +2,7 @@
 
 
 @section('content')
-<section class='titulo'>
+<section class='titulo container'>
     @if(auth.user)
         <h1 class='text-center font-titulo cor-especial pt-5'>Bem vindo {{ auth.user.username }} </h1>
     @else
