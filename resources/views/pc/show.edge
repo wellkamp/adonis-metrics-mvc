@@ -24,7 +24,7 @@
                     <p class="card-text">Processador: {{ computer.processador }}</p>
                     <p class="card-text">Memória RAM: {{ computer.memory }}</p>
                     <a href="{{ route('gpu.show', { id: auth.user.id }) }}" class="btn-sm btn-primary">GPU</a>
-                    <a href="" class="btn-sm btn-primary">Memória Ram</a>
+                    <a href="{{ route('memory.show', { id: auth.user.id }) }}" class="btn-sm btn-primary">Memória Ram</a>
                     <a href="" class="btn-sm btn-danger btn-primary">Delete</a>
                 </div>
                 </div>                  
