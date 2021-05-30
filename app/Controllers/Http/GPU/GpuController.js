@@ -11,7 +11,7 @@ class GpuController {
             if (params.id == auth.user.id) {
                 var currentData = moment().format("YYYY-MM-DD");
                 var lastDays = moment()
-                    .subtract(10, "days")
+                    .subtract(11, "days")
                     .format("YYYY-MM-DD");
 
                 const gpuMetrics = await GPUMetrics.query()
@@ -61,7 +61,7 @@ class GpuController {
                 let hour_at_arr = [];
                 await GPUMetrics.query()
                     .where("pc_id", params.id)
-                    .limit(8)
+                    .limit(20)
                     .orderBy("id", "desc")
                     .fetch()
                     .then((e) => {
@@ -79,9 +79,10 @@ class GpuController {
                 let hourAtFifty = [];
                 await GPUMetrics.query()
                     .where("pc_id", params.id)
-                    .where("gpu_core", ">", 50)
+                    .where("gpu_core", ">=", 50)
                     .whereBetween("created_at", [lastDays, currentData])
-                    .limit(8)
+                    .orderBy("id", "desc")
+                    .limit(20)
                     .fetch()
                     .then((e) => {
                         for (let i = 0; i < e.rows.length; i++) {
