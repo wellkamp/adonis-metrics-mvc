@@ -19,6 +19,7 @@
                 <div class="card-header">Computador</div>
                 <div class="card-body">
                     <h3 class="card-title">Especificações</h3>
+                    <p class="card-text">ID: {{ computer.id }}</p>
                     <p class="card-text">Placa mãe: {{ computer.mainboard }}</p>
                     <p class="card-text">GPU: {{ computer.gpu }}</p>
                     <p class="card-text">Processador: {{ computer.processador }}</p>
@@ -40,21 +41,21 @@
     <section>
         <form method="POST" class="container col-lg-6">
             {{ csrfField() }}
-            <div class="form-group" action={{ route('login') }}>
-                <label for="email">Placa mãe</label>
-                <input type="email" name="mainboard" class="form-control" id="mainboard" placeholder="Placa mãe">
+            <div class="form-group">
+                <label for="mainboard">Placa mãe</label>
+                <input type="text" name="mainboard" class="form-control" id="mainboard" placeholder="Placa mãe">
             </div>
             <div class="form-group">
-                <label for="password">GPU</label>
-                <input type="password" name="gpu" class="form-control" id="gpu" placeholder="GPU">
+                <label for="gpu">GPU</label>
+                <input type="text" name="gpu" class="form-control" id="gpu" placeholder="GPU">
             </div>
             <div class="form-group">
-                <label for="password">Processador</label>
-                <input type="password" name="core" class="form-control" id="core" placeholder="Processador">
+                <label for="processador">Processador</label>
+                <input type="text" name="processador" class="form-control" id="processador" placeholder="Processador">
             </div>
             <div class="form-group">
-                <label for="password">Memória</label>
-                <input type="password" name="memory" class="form-control" id="memory" placeholder="Memória">
+                <label for="memory">Memória</label>
+                <input type="text" name="memory" class="form-control" id="memory" placeholder="Memória">
             </div>
             <div class="text-center">
                 <button class="btn btn-success mb-5 mt-3" type="submit">Cadastrar</button>
