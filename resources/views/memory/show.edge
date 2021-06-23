@@ -5,7 +5,7 @@
     <section class='titulo'>
         @if(memoryMetrics)
             <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }}</h1>
-            <p class='text-center font-titulo text-secondary pb-5 titulo2'>Landing page que contém informações sobre a GPU {{ personalComputer.gpu }}</p>
+            <p class='text-center font-titulo text-secondary pb-5 titulo2'>Landing page que contém informações sobre a Memória Ram {{ personalComputer.memory }}</p>
         @else
             <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }} </h1>
         @endif
@@ -80,9 +80,11 @@
             </div>
           </div>
       </section>
-
+      <canvas id="myChart"></canvas>
+      
     <script>
         $('.circlechart').circlechart();
-      </script>
+    </script>
+      {{ script('js/graphsMemory.js')}}
     
 @endsection
