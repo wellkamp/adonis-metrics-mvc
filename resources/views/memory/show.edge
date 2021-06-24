@@ -5,7 +5,10 @@
     <section class='titulo'>
         @if(memoryMetrics)
             <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }}</h1>
-            <p class='text-center font-titulo text-secondary pb-5 titulo2'>Landing page que contém informações sobre a Memória Ram {{ personalComputer.memory }}</p>
+
+            <p class='text-center font-titulo text-secondary pb-5 titulo2'>Landing page que contém informações sobre a memória RAM</p>
+            <p class='text-center font-titulo text-secondary pb-5 titulo2'>Landing page que contém informações sobre a Memória Ram </p>
+
         @else
             <h1 class='text-center font-titulo cor-especial pt-5'>Olá, {{ auth.user.username }} </h1>
         @endif
@@ -85,6 +88,5 @@
     <script>
         $('.circlechart').circlechart();
     </script>
-      {{ script('js/graphsMemory.js')}}
     
 @endsection

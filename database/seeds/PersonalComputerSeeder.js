@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| UserSeeder
+| PersonalComputerSeeder
 |--------------------------------------------------------------------------
 |
 | Make use of the Factory instance to seed database with dummy data or
@@ -12,17 +12,19 @@
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use("Factory");
-const User = use("App/Models/User");
+const PersonalComputer = use("App/Models/PersonalComputer");
 
-class UserSeeder {
+class PersonalComputerSeeder {
     async run() {
-        await User.truncate();
-        await User.create({
-            username: "teste",
-            email: "teste@gmail.com",
-            password: "123456789",
+        await PersonalComputer.truncate();
+        await PersonalComputer.create({
+            mainboard: "PLACA MÃE",
+            gpu: "GPU",
+            processador: "PROCESSADOR",
+            memory: "MEMÓRIA",
+            user_id: 1,
         });
     }
 }
 
-module.exports = UserSeeder;
+module.exports = PersonalComputerSeeder;
