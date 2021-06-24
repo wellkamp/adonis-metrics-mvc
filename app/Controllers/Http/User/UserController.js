@@ -13,12 +13,11 @@ class UserController {
         try {
             const userForm = request.only(["email", "password", "username"]);
 
-            console.log(userForm);
             await User.create(userForm);
 
             session.flash({ notification: "User created successfully" });
         } catch (e) {
-            return response.redirect("users.register");
+            return response.redirect("/");
         }
 
         return response.route("/");
