@@ -49,8 +49,6 @@ class MemoryController {
                     .avg("used as avgPerDay")
                     .first();
 
-                console.log(maxValue, minValue, avg);
-
                 return !memoryMetrics.rows.length
                     ? view.render("memory.show")
                     : view.render("memory.show", {

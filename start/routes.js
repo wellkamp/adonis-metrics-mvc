@@ -29,6 +29,10 @@ Route.group(() => {
 }).middleware(["guest"]);
 
 Route.group(() => {
+    Route.post("/pc/:id", "PComputerController.store")
+        .namespace("PC")
+        .as("pc.store");
+
     Route.get("/pc/:id", "PComputerController.show")
         .namespace("PC")
         .as("pc.show");

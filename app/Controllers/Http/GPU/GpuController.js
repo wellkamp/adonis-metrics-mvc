@@ -1,7 +1,6 @@
 "use strict";
 
 const GPUMetrics = use("App/Models/GPUMetric");
-const User = use("App/Models/User");
 const PersonalComputer = use("App/Models/PersonalComputer");
 const moment = use("moment");
 

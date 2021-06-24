@@ -20,6 +20,25 @@ class PComputerController {
             console.log(error);
         }
     }
+
+    async store({ auth, request, session, response }) {
+        try {
+            let pcForm = request.only([
+                "mainboard",
+                "processador",
+                "gpu",
+                "memory",
+            ]);
+            pcForm["user_id"] = auth.user.id;
+            console.log(pcForm);
+            await PersonalComputer.create(pcForm);
+            session.flash({ notification: "PC created successfully" });
+        } catch (e) {
+            return response.redirect("/");
+        }
+
+        return response.route("/");
+    }
 }
 
 module.exports = PComputerController;
