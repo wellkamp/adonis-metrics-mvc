@@ -11,8 +11,7 @@
 
 <h2 id='prerequisitos'>Pré-requisitos</h2>
 
-<p>Recomendo utilizar um editor de texto, para esse projeto utilizei o VScode
-<a href="https://code.visualstudio.com/">VSCode</a>.</p>
+<p>Recomendo utilizar um editor de texto, para esse projeto utilizei o <a href="https://code.visualstudio.com/">VSCode</a>.</p>
 
 ```bash
 # Clonar o repositorio
