@@ -10,12 +10,8 @@
 <p>Em construção</p>
 
 <h2 id='prerequisitos'>Pré-requisitos</h2>
-<p> Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-<a href="www.github.com">Git,</a> <a href="https://www.python.org/">Python</a>.
-</p>
 
-<p>Além disto é bom ter um editor ou IDE para trabalhar com o código. Este projeto foi utilizado a IDE 
-<a href="https://www.jetbrains.com/pt-br/pycharm/">Pycharm</a>.</p>
+<p>Recomendo utilizar um editor de texto, para esse projeto utilizei o <a href="https://code.visualstudio.com/">VSCode</a>.</p>
 
 ```bash
 # Clonar o repositorio
